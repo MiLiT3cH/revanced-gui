@@ -1,0 +1,1 @@
+pyinstaller --onefile --windowed --icon="icona.ico" --add-data "JDK;JDK" --add-data "other\\icona.ico;other" .\revanced-gui.py

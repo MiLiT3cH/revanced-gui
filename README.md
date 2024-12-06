@@ -58,43 +58,33 @@
    Continuing the legacy of Vanced
 </p>
 
-# 💻 ReVanced CLI
+# 💻 ReVanced GUI
 
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/ReVanced/revanced-cli/release.yml)
-![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)
-
-Command-line application to use ReVanced.
-
-## ❓ About
-
-ReVanced CLI is a command-line application that uses [ReVanced Patcher](https://github.com/revanced/revanced-patcher) to patch Android apps.
+Revanced GUI è un fork di revanced-cli a cui ho applicato un interfaccia grafica semplice e funzionale
 
 ## 💪 Features
 
-Some of the features ReVanced CLI provides are:
+- Ha integrato JDK all'interno dell'app
 
-- 💉 **Patch apps**: Harness ReVanced Patcher to patch Android apps
-- 💾 **Install and uninstall apps**: Install and uninstall Apps via ADB,
-  using the Android package manager or by mounting using root permissions
-- 📃 **List patches from patch bundles**: List available patches, compatible packages, and versions
-- 💪 **Flexibility and functionality**: Apply any combination of patches to any version of Android apps
+- Può Scaricare l'ultima versione sia del cli che delle patch
 
 ## 🔽 Download
 
-You can download the most recent version of ReVanced CLI from
-[here](https://github.com/ReVanced/revanced-cli/releases/latest).  
-Learn how to use ReVanced CLI by following the [documentation](/docs).
+Puoi scaricarlo tranquillamente da qua
+[link](https://github.com/MiLiT3cH/revanced-gui/releases/latest).  
 
-## 📚 Everything else
+## 📚 Qualcos'altro
 
-### 📙 Contributing
+non sono uno sviluppatore e gran parte del lavoro è stato svolto con chatgpt, ma ho risolto una mia esigenza e credo che ciò potrà essere d'aiuto anche per altri
 
-Thank you for considering contributing to ReVanced CLI.
-You can find the contribution guidelines [here](CONTRIBUTING.md).
+### 📙 Meriti
+
+Supportate gli sviluppatori e il progetto originale qua
+ [link(https://github.com/ReVanced).
 
 ### 🛠️ Building
 
-To build a ReVanced CLI, you can follow the [documentation](/docs).
+Per ricompilare una versione aggiornata usare lo script: build.bat
 
 ### 📃 Documentation
 
