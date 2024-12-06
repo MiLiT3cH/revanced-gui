@@ -57,13 +57,13 @@ class ReVancedGUI(QMainWindow):
         self.log_output.setFont(QFont("Courier New", 10))
 
         # Run and clear log buttons
-        self.run_btn = QPushButton("Run")
+        self.run_btn = QPushButton("Avvia")
         self.run_btn.setStyleSheet(
             "background-color: #6200ea; color: #ffffff; font-size: 14px; border-radius: 12px;"
         )
         self.run_btn.clicked.connect(self.run_command)
 
-        self.clear_log_btn = QPushButton("Clear Log")
+        self.clear_log_btn = QPushButton("Cancella log")
         self.clear_log_btn.setStyleSheet(
             "background-color: #3700b3; color: #ffffff; font-size: 14px; border-radius: 12px;"
         )
