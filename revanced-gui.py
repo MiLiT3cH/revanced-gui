@@ -37,7 +37,7 @@ class ReVancedGUI(QMainWindow):
         # Input and output file sections
         self.file_layout = QHBoxLayout()
         self.apk_input_card = self.create_file_selector("APK Input", "apk_input")
-        self.apk_output_card = self.create_file_selector("Output APK", "apk_output")
+        self.apk_output_card = self.save_file_selector("Output APK", "apk_output")
         self.file_layout.addWidget(self.apk_input_card)
         self.file_layout.addWidget(self.apk_output_card)
 
@@ -85,6 +85,30 @@ class ReVancedGUI(QMainWindow):
         container = QWidget()
         container.setLayout(self.main_layout)
         self.setCentralWidget(container)
+        
+    def save_file_selector(self, title, name, default="", small=False):
+        layout = QVBoxLayout()
+        label = QLabel(title)
+        label.setFont(QFont("Arial", 10))
+        label.setStyleSheet("color: #ffffff; margin-bottom: 4px;")
+        line_edit = QLineEdit(default)
+        line_edit.setPlaceholderText("Salva il file...")
+        line_edit.setObjectName(name)
+        btn = QPushButton("Select File")
+        btn.setStyleSheet("background-color: #6200ea; color: #ffffff; border-radius: 8px;")
+        btn.clicked.connect(lambda: self.save_file(line_edit))
+        layout.addWidget(label)
+        layout.addWidget(line_edit)
+        layout.addWidget(btn)
+        
+        # Ridurre la dimensione se "small" è True
+        frame = QFrame()
+        frame.setLayout(layout)
+        if small:
+            frame.setStyleSheet("background-color: #1f1f1f; border-radius: 8px; padding: 5px; max-width: 300px;")
+        else:
+            frame.setStyleSheet("background-color: #1f1f1f; border-radius: 8px; padding: 10px;")
+        return frame        
 
     def create_file_selector(self, title, name, default="", small=False):
         layout = QVBoxLayout()
@@ -253,9 +277,20 @@ class ReVancedGUI(QMainWindow):
             self.log_output.append(f"Errore durante il download {new_name}: {e}")
             
     def select_file(self, line_edit):
-        file_path, _ = QFileDialog.getOpenFileName(self, "Select File", "", "All Files (*)")
-        if file_path:
-            line_edit.setText(file_path)
+        # Apre il file dialog per la selezione del file
+        file_path, _ = QFileDialog.getOpenFileName(self, "Seleziona un file", "", "APK Files (*.apk);;All Files (*)")
+        if file_path:  # Se è stato selezionato un file
+            line_edit.setText(file_path)  # Imposta il percorso nel QLineEdit
+        else:
+            self.log_output.append("Nessun file selezionato.")
+
+    def save_file(self, line_edit):
+        # Apre il file dialog per la selezione del percorso di salvataggio
+        file_path, _ = QFileDialog.getSaveFileName(self, "Salva file", "", "APK Files (*.apk);;All Files (*)")
+        if file_path:  # Se un percorso valido è stato selezionato
+            line_edit.setText(file_path)  # Imposta il percorso nel QLineEdit
+        else:
+            self.log_output.append("Nessun file selezionato.")
             
     def clear_log(self):
         self.log_output.clear()
@@ -269,7 +304,7 @@ class ReVancedGUI(QMainWindow):
             apk_output += ".apk"
 
         if not os.path.isfile(apk_input) or not os.path.isfile(patch_file):
-            self.log_output.append("Error: Nessun file selezionato.")
+            self.log_output.append("Errore: Cli non trovato")
             return
 
         if " " in apk_input:
